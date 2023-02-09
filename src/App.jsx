@@ -8,9 +8,9 @@ import ConfirmarCuenta from './paginas/ConfirmarCuenta'
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element = {<AuthLayout/>}>
+    <BrowserRouter  >
+      <Routes  >
+        <Route  path="/" element = {<AuthLayout/>}>
               <Route index element = {<Login/>}/> {/* index es la pagina principal */}
               <Route path="registrar" element = {<Registrar/>}/>
               <Route path="olvide-password" element = {<OlvidePassword/>}/>
