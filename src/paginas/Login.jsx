@@ -4,16 +4,18 @@ const Login = () => {
   return (
     <>
         <div>
-          <h1 className="text-indigo-600 font-black text-5xl">
-              Inicia Sesión y Administra tus 
-              <span className="text-black"> Pacientes</span>
+          <h1 className="text-red-800 font-black text-5xl">
+              Inicia Sesión y Administra tus{' '}
+              <span className="text-white">Pacientes</span>
           </h1>
         </div>
-        <div>
+
+
+        <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-amber-900">
           <form action="">
             <div className="my-4">
               <label 
-                className="uppercase text-gray-500 block text-xl font-bold" 
+                className="uppercase text-gray-200 block text-xl font-bold" 
                 htmlFor="">
                   Email
               </label>
@@ -25,7 +27,7 @@ const Login = () => {
             </div>
             <div className="my-4">
               <label 
-                className="uppercase text-gray-500 block text-xl font-bold" 
+                className="uppercase text-gray-200 block text-xl font-bold" 
                 htmlFor="">
                   Password
               </label>
@@ -39,17 +41,17 @@ const Login = () => {
             <input 
               type = "submit"
               value = "Iniciar Sesión"
-              className = "bg-amber-600 w-full py-3 px-10 rounded-2xl text-slate-100 uppercase font-bold mt-5 hover: cursor-pointer hover:bg-amber-400 hover:text-indigo-700 md:w-auto "  
+              className = "bg-yellow-600 w-full py-3 px-10 rounded-2xl text-slate-100 uppercase font-bold mt-5 hover: cursor-pointer hover:bg-amber-400 hover:text-indigo-700 md:w-auto "  
             />
 
           </form>
 
           <nav className="mt-8 lg:flex lg:justify-between">
             <Link 
-              className="block text-center my-5 text-stone-500"
-              to="/registrar">¿No tieenes una cuenta? Regístrate</Link> 
+              className="block text-center my-5 text-stone-200 hover:font-black"
+              to="/registrar">¿No tienes una cuenta? Regístrate</Link> 
             <Link 
-              className="block text-center my-5 text-stone-500"
+              className="block text-center my-5 text-stone-200 hover:font-black"
               to="/olvide-password">Olvidé mi contraseña</Link> 
           </nav>
         </div>
