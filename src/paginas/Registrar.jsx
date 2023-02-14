@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import Alerta from "../components/Alerta"
 
 const Registrar = () => {
   const [ nombre, setNombre ] = useState('')
@@ -7,36 +8,47 @@ const Registrar = () => {
   const [ password, setPassword ] = useState('')
   const [ repetirPassword, setRepetirPassword ] = useState('')
 
+  const [alerta, setAlerta] = useState({})
+
   const handleSubmit = (e) => { 
     e.preventDefault(); 
 
     if([nombre, email, password, repetirPassword].includes('')) {
-
-      console.log('hay campos vacios');
+      setAlerta({msg: 'Todos los campos son necesarios', error:true})
       return;
     }
 
     if(password !== repetirPassword) {
-      console.log('Tu contraseña no coincide');
+      setAlerta({msg: 'Tu contraseña no coincide', error: true})
       return
     }
 
     if(password.length < 6) {
-      console.log('Tu password debe contener a 6 caracteres');
+      setAlerta({msg: 'Tu password debe contener más de 6 caracteres', error:true})
       return
     }
+
+    setAlerta({});
+
+    // Crear usuario en la api
    }
+
+   const { msg } = alerta
 
   return (
     <>
         <div>
-          <h1 className="text-red-1000 font-black text-5xl">
+          <h1 className="text-red-1000 font-black text-5xl ">
               Crea tu Cuenta y Administra tus{' '}
               <span className="text-white-1000">Pacientes</span>
           </h1>
         </div>
 
-        <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200">
+        <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200 ">
+
+          {msg && <Alerta
+            alerta={alerta}
+          />}
           <form action=""
             onSubmit={ handleSubmit }
           >
@@ -104,7 +116,7 @@ const Registrar = () => {
             <input 
               type = "submit"
               value = "Crear Cuenta"
-              className = "bg-yellow-600 w-full py-3 px-10 rounded-2xl text-slate-100 uppercase font-bold mt-5 hover: cursor-pointer hover:bg-amber-400 hover:text-red-1000 md:w-auto  "  
+              className = "bg-yellow-600 w-full py-3 px-10 rounded-2xl text-slate-100 uppercase font-bold mt-5 hover: cursor-pointer hover:bg-amber-400 hover:text-red-1000 hover:opacity-75 md:w-auto  "  
             />
 
           </form>
