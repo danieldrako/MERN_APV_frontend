@@ -7,6 +7,26 @@ const Registrar = () => {
   const [ password, setPassword ] = useState('')
   const [ repetirPassword, setRepetirPassword ] = useState('')
 
+  const handleSubmit = (e) => { 
+    e.preventDefault(); 
+
+    if([nombre, email, password, repetirPassword].includes('')) {
+
+      console.log('hay campos vacios');
+      return;
+    }
+
+    if(password !== repetirPassword) {
+      console.log('Tu contraseña no coincide');
+      return
+    }
+
+    if(password.length < 6) {
+      console.log('Tu password debe contener a 6 caracteres');
+      return
+    }
+   }
+
   return (
     <>
         <div>
@@ -17,7 +37,9 @@ const Registrar = () => {
         </div>
 
         <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200">
-          <form action="">
+          <form action=""
+            onSubmit={ handleSubmit }
+          >
           <div className="my-4">
               <label 
                 className="uppercase text-white-1000 block text-xl font-bold shadow-2xl" 
