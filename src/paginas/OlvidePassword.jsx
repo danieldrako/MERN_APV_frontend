@@ -1,6 +1,36 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
+import Alerta from "../components/Alerta"
+import clienteAxios from "../config/axios"
 
 const OlvidePassword = () => {
+  const [email, setEmail] = useState('')
+  const [alerta, setAlerta] = useState({})
+
+  const handleSubmit = async (e) => { 
+      e.preventDefault()
+
+      if(email === '' || email.length <= 5){
+        setAlerta({msg: 'El email es obligatorio', error:true})
+        return
+      }
+
+      try {
+        const {data} = await clienteAxios.post('/veterinarios/olvide-password', {email})
+
+        console.log(data);
+
+        setAlerta({msg:data.msg})
+      } catch (error) {
+        setAlerta({
+          msg: error.response.data.msg,
+          error: true
+        })
+      }
+   }
+
+   const {msg} = alerta
+
   return (
     <>
         <div>
@@ -11,7 +41,13 @@ const OlvidePassword = () => {
         </div>
 
         <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200">
-          <form action="">
+
+        {msg && <Alerta
+            alerta={alerta}
+          />}
+          <form action=""
+            onSubmit={handleSubmit}
+          >
             <div className="my-4">
                 <label 
                   className="uppercase text-white-1000 block text-xl font-bold" 
@@ -22,6 +58,8 @@ const OlvidePassword = () => {
                   type="email"
                   placeholder="Email de Registro" 
                   className="border w-full p-3 mt-3 bg-white-1000 rounded-2xl"
+                  value={email}
+                  onChange={(e) =>  setEmail(e.target.value) }
                 />
               </div>
 
