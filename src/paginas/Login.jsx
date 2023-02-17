@@ -1,6 +1,40 @@
+import { useState } from "react"
 import { Link } from "react-router-dom" /*Mejora el performance de los links*/
+import Alerta from "../components/Alerta"
+import useAuth from "../hooks/useAuth"
+import clienteAxios from "../config/axios"
 
 const Login = () => {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [alerta, setAlerta] = useState({})
+
+  const handleSubmit = async (e) => { 
+    e.preventDefault()
+
+    if([email,password].includes('')){
+      setAlerta({
+        msg: 'Todos los campos, son obligatorios',
+        error: true
+      })
+
+      return
+    }
+
+    try {
+      const {data} = await clienteAxios.post('/veterinarios/login', {email, password})
+
+      localStorage.setItem('token',data.token)
+    } catch (error) {
+      setAlerta({
+        msg: error.response.data.msg,
+        error: true
+      })
+    }
+   }
+
+  const {msg} = alerta
   return (
     <>
         <div>
@@ -12,7 +46,11 @@ const Login = () => {
 
 
         <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200">
-          <form action="">
+          {msg && <Alerta 
+            alerta={alerta}
+          />}
+
+          <form action="" onSubmit={handleSubmit}>
             <div className="my-4">
               <label 
                 className="uppercase text-white-1000 block text-xl font-bold" 
@@ -23,6 +61,8 @@ const Login = () => {
                 type="email"
                 placeholder="Email de Registro" 
                 className="border w-full p-3 mt-3 bg-white-1000 rounded-2xl"
+                value={email}
+                onChange={ e=> setEmail(e.target.value)}
               />
             </div>
             <div className="my-4">
@@ -35,6 +75,8 @@ const Login = () => {
                 type="password"
                 placeholder="Contraseña" 
                 className="border w-full p-3 mt-3 bg-white-1000 rounded-2xl"
+                value={password}
+                onChange={ e=> setPassword(e.target.value)}
               />
             </div>
 
