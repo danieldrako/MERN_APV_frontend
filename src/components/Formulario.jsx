@@ -6,12 +6,12 @@ const Formulario = () => {
   const [nombre, setNombre] = useState('')
   const [propietario, setPropietario] = useState('')
   const [email, setEmail] = useState('')
-  const [fecha, setFecha] = useState(Date.now())
+  const [fecha, setFecha] = useState('')
   const [sintomas, setSintomas] = useState('')
 
   const [alerta, setAlerta] = useState({})
 
-  const { pacientes } = usePacientes()
+  const { guardarPaciente } = usePacientes()
 
 
   const handleSubmit = (e) => { 
@@ -25,6 +25,10 @@ const Formulario = () => {
       })
       return;
     }
+
+
+    setAlerta({})
+    guardarPaciente({nombre, propietario, email, fecha, sintomas})
 
 
    }
@@ -53,7 +57,7 @@ const Formulario = () => {
             type="text" 
             id = "nombre"
             placeholder="Nombre de la Mascota"
-            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md"
+            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md text-black"
             value={nombre}
             onChange={ (e) => setNombre(e.target.value) }
           />
