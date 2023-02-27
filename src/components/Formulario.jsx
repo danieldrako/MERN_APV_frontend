@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Alerta from './Alerta'
 
 const Formulario = () => {
   const [nombre, setNombre] = useState('')
@@ -9,6 +10,22 @@ const Formulario = () => {
 
   const [alerta, setAlerta] = useState({})
 
+  const handleSubmit = (e) => { 
+    e.preventDefault()
+
+    //* Validar el formulario
+    if([nombre, propietario, email, fecha, sintomas].includes('')) {
+      setAlerta({
+        msg: 'Todos los campos son obligatorios',
+        error: true
+      })
+      return;
+    }
+
+
+   }
+
+   const {msg} = alerta
   return (
     <>
       <p className="text-lg text-center mb-10">
@@ -16,8 +33,11 @@ const Formulario = () => {
         <span className="font-bold text-red-1000">Administralos</span>
       </p>
 
+      
+
       <form action=""
-        className=" bg-zinc-1200 py-10 px-5 mb-10 lg:mb-0 shadow-lg rounded-lg"
+        className=" bg-zinc-1200 py-10 px-5 mb-10 lg:mb-3 shadow-lg rounded-lg"
+        onSubmit={handleSubmit}
       >
         <div className="mb-5 text-white-1000">
           <label 
@@ -101,10 +121,8 @@ const Formulario = () => {
           type="submit"
           className=" w-full  hover:ml-0 p-3 uppercase font-bold cursor-pointer bg-red-1000  hover:bg-red-800 text-white-1000  hover:h-14 h-16 text-center  transition-all mb-1 rounded-lg "
           value="Agregar Paciente" />
-
-
-
       </form>
+      { msg && <Alerta alerta={alerta}/> }
     </>
   )
 }
