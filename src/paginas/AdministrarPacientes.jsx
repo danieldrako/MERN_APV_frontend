@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Formulario from "../components/Formulario"
-import ListadoPacientes from "../components/ListadoPAcientes"
+import ListadoPacientes from "../components/ListadoPacientes"
 
 
 const AdministrarPacientes = () => {
