@@ -1,10 +1,9 @@
 import usePacientes from "../hooks/usePacientes"
+import Paciente from "./Paciente";
 
 const ListadoPacientes = () => {
 
   const {pacientes} = usePacientes()
-
-  console.log(pacientes);
   return (
     <>
       {pacientes.length? 
@@ -16,6 +15,13 @@ const ListadoPacientes = () => {
             Administra tus Pacientes y {' '}
             <span className=" text-red-1000 font-bold"> tus Citas </span>
           </p>
+
+          {pacientes.map(paciente  => ( 
+            <Paciente
+              key ={paciente._id}
+              paciente={paciente}
+            />
+           ))}
         </>
       ) : 
       (

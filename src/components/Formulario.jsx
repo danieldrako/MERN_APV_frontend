@@ -30,15 +30,16 @@ const Formulario = () => {
     setAlerta({})
     guardarPaciente({nombre, propietario, email, fecha, sintomas})
 
-
    }
 
    const {msg} = alerta
   return (
     <>
-      <p className="text-lg text-center mb-10">
-        Añada a tus pacientes y {''} 
-        <span className="font-bold text-red-1000">Administralos</span>
+      <h2 className="font-black text-3xl text-center">Administrador Pacientes</h2>
+
+      <p className="text-xl mt-5 mb-10 text-center">
+        Registra tus Pacientes y {' '}
+        <span className=" text-red-1000 font-bold"> Administralos </span>
       </p>
 
       
