@@ -2,7 +2,7 @@ import usePacientes from "../hooks/usePacientes"
 
 const Paciente = ({paciente}) => {
 
-    const { setEdicion } = usePacientes()
+    const { setEdicion, eliminarPaciente } = usePacientes()
 
     const {email, fecha, nombre, propietario,sintomas, _id} = paciente
 
@@ -39,6 +39,7 @@ const Paciente = ({paciente}) => {
             <button
                 type="button"
                 className=" bg-red-700 w-full py-3 px-10 rounded-2xl text-slate-100 uppercase font-bold mt-5 hover: cursor-pointer hover:bg-red-500 hover:text-black md:w-auto"
+                onClick={()=>eliminarPaciente(paciente)}
             > Eliminar</button>
         </div>
 

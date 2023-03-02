@@ -53,7 +53,6 @@ export const PacientesProvider = ({children}) => {
                 console.log(error);
             }
         } else {
-
             try {
                 const { data } = await clienteAxios.post('./pacientes', paciente, config)
                 const { createdAt, updatedAt, __v, ...pacienteAlmacenado } = data
@@ -62,13 +61,33 @@ export const PacientesProvider = ({children}) => {
                 console.log(error.response.data.msg);
             }
         }
-
-        
-
     }
 
     const setEdicion = (paciente) => { 
         setPaciente(paciente);
+     }
+
+     const eliminarPaciente = async paciente =>{
+        const confrimar = confirm(`¿Deseas eliminar al paciente ${paciente.nombre} ?`)
+
+        if(confrimar) {
+            try {
+                const token= localStorage.getItem('token')
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+
+                const {data} = await clienteAxios.delete(`/pacientes/${paciente._id}`,config)
+
+                const pacientesActualizado = pacientes.filter(pacientesState => pacientesState._id !== paciente._id)
+                setPacientes(pacientesActualizado)
+            } catch (error) {
+                console.log(error);
+            }
+        }
      }
     
     return (
@@ -77,7 +96,8 @@ export const PacientesProvider = ({children}) => {
                 pacientes,
                 guardarPaciente,
                 setEdicion, 
-                paciente
+                paciente,
+                eliminarPaciente
             }}
         >
             {children}
