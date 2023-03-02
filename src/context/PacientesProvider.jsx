@@ -6,6 +6,7 @@ const PacientesContext = createContext()
 export const PacientesProvider = ({children}) => { 
 
     const [pacientes, setPacientes] = useState ([])
+    const [paciente, setPaciente] = useState ({})
 
     useEffect(() => {
         const obtenerPacientes = async () => { 
@@ -52,12 +53,16 @@ export const PacientesProvider = ({children}) => {
             console.log(error.response.data.msg);
         }
     }
+    const setEdicion = (paciente) => { 
+        setPaciente(paciente);
+     }
     
     return (
         <PacientesContext.Provider
             value={{
                 pacientes,
-                guardarPaciente 
+                guardarPaciente,
+                setEdicion 
             }}
         >
             {children}
