@@ -18,6 +18,7 @@ const Formulario = () => {
     if(paciente?.nombre){
       setNombre(paciente.nombre)
       setPropietario(paciente.propietario)
+      setEmail(paciente.email)
       setFecha(paciente.fecha)
       setSintomas(paciente.sintomas)
       setId(paciente._id)
@@ -40,8 +41,17 @@ const Formulario = () => {
     }
 
 
-    setAlerta({})
+    
     guardarPaciente({nombre, propietario, email, fecha, sintomas, id})
+    setAlerta({
+      msg: 'Guardado Correctamente'
+    })
+    setNombre('')
+    setPropietario('')
+    setEmail('')
+    setFecha('')
+    setSintomas('')
+    setId('')
 
    }
 
@@ -87,7 +97,7 @@ const Formulario = () => {
             type="text" 
             id = "propietario"
             placeholder="Nombre del Propietario"
-            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md"
+            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md text-black"
             value={propietario}
             onChange={ (e) => setPropietario(e.target.value) }
           />
@@ -103,7 +113,7 @@ const Formulario = () => {
             type="email" 
             id = "email"
             placeholder="Email del Propietario"
-            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md"
+            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md text-black"
             value={email}
             onChange={ (e) => setEmail(e.target.value) }
           />
@@ -118,7 +128,7 @@ const Formulario = () => {
           <input 
             type="date" 
             id = "fecha"
-            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md"
+            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md text-black"
             value={fecha}
             onChange={ (e) => setFecha(e.target.value) }
           />
@@ -133,7 +143,7 @@ const Formulario = () => {
           <textarea 
             id = "sintomas"
             placeholder="Describe los Síntomas"
-            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md"
+            className=" border-2 w-full p-2 mt-2 placeholder-slate-300 rounded-md text-black"
             value={sintomas}
             onChange={ (e) => setSintomas(e.target.value) }
           />
