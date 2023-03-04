@@ -57,7 +57,7 @@ const Formulario = () => {
 
    const {msg} = alerta
   return (
-    <>
+    < div className = "bg-[url('/public/pets.jpg')] bg-contains h-screen bg-center bg-no-repeat ">
       <h2 className="font-black text-3xl text-center">Administrador Pacientes</h2>
 
       <p className="text-xl mt-5 mb-10 text-center">
@@ -68,7 +68,7 @@ const Formulario = () => {
       
 
       <form action=""
-        className=" bg-zinc-1200 py-10 px-5 mb-10 lg:mb-3 shadow-lg rounded-lg"
+        className=" bg-zinc-1200 bg-opacity-70 py-10 px-5 mb-10 lg:mb-3 shadow-lg rounded-lg"
         onSubmit={handleSubmit}
       >
         <div className="mb-5 text-white-1000">
@@ -157,7 +157,7 @@ const Formulario = () => {
           />
       </form>
       { msg && <Alerta alerta={alerta}/> }
-    </>
+    </div>
   )
 }
 

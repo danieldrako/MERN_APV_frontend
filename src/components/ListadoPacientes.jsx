@@ -1,5 +1,6 @@
 import usePacientes from "../hooks/usePacientes"
 import Paciente from "./Paciente";
+import { AnimatePresence } from "framer-motion"; 
 
 const ListadoPacientes = () => {
 
@@ -16,12 +17,14 @@ const ListadoPacientes = () => {
             <span className=" text-red-1000 font-bold"> tus Citas </span>
           </p>
 
-          {pacientes.map(paciente  => ( 
-            <Paciente
-              key ={paciente._id}
-              paciente={paciente}
-            />
-           ))}
+          <AnimatePresence>
+            {pacientes.map(paciente  => ( 
+              <Paciente
+                key ={paciente._id}
+                paciente={paciente}
+              />
+            ))}
+           </AnimatePresence>
         </>
       ) : 
       (

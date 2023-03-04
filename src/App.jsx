@@ -13,15 +13,29 @@ import CambiarPassword from './paginas/CambiarPassword'
 
 import { AuthProvider } from './context/AuthProvider'
 import { PacientesProvider } from './context/PacientesProvider'
+import { useEffect, useState } from 'react'
+import Loading from './components/Loading'
+
 
 function App() {
 
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+   setLoading(false)
+  }, [])
+  
+if(loading){
+  return (
+    <Loading/>
+  )
+} else {
   return (
     <BrowserRouter  >
       <AuthProvider>
         <PacientesProvider>
           <Routes  >
-            <Route  path="/" element = {<AuthLayout/>}>
+            <Route  path="/" element = {<AuthLayout/>} >
                   <Route index element = {<Login/>}/> {/* index es la pagina principal */}
                   <Route path="registrar" element = {<Registrar/>}/>
                   <Route path="olvide-password" element = {<OlvidePassword/>}/>
@@ -40,5 +54,5 @@ function App() {
     </BrowserRouter>
   )
 }
-
+}
 export default App

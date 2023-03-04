@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom" /*Mejora el perfo
 import Alerta from "../components/Alerta"
 import useAuth from "../hooks/useAuth"
 import clienteAxios from "../config/axios"
+import {motion} from 'framer-motion'
 
 const Login = () => {
 
@@ -42,15 +43,23 @@ const Login = () => {
   const {msg} = alerta
   return (
     <>
-        <div>
-          <h1 className="text-red-1000 font-black text-5xl">
+        <div  >
+          <motion.h1
+          initial={{scale:0}}
+          animate={{scale:1}}
+          transition={{
+            duration: 1,
+            ease: 'easeInOut',
+            delay:0.2,
+            type: 'spring'
+          }} className="text-red-1000 font-black text-5xl">
               Inicia Sesión y Administra tus{' '}
-              <span className="text-white-1000">Pacientes</span>
-          </h1>
+              <span className="text-black">Pacientes</span>
+          </motion.h1>
         </div>
 
 
-        <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200">
+        <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200 bg-opacity-80">
           {msg && <Alerta 
             alerta={alerta}
           />}

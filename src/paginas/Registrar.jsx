@@ -58,7 +58,7 @@ const Registrar = () => {
           </h1>
         </div>
 
-        <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200 ">
+        <div className="mt-20 md:mt-5 shadow-lg p-3 rounded-xl bg-zinc-1200 bg-opacity-80">
 
           {msg && <Alerta
             alerta={alerta}

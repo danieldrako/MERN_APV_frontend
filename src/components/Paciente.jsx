@@ -1,5 +1,17 @@
 import usePacientes from "../hooks/usePacientes"
+import {motion} from 'framer-motion'
 
+const variants = {
+    hidden:{
+        opacity:0
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            duration: 1,
+        }
+    }
+}
 const Paciente = ({paciente}) => {
 
     const { setEdicion, eliminarPaciente } = usePacientes()
@@ -12,7 +24,11 @@ const Paciente = ({paciente}) => {
      }
 
   return (
-    <div className="mx-4 my-7 bg-zinc-1200 shadow-xl px-5 py-8 rounded-xl"> 
+    <motion.div className="mx-4 my-7 bg-zinc-1200 shadow-xl px-5 py-8 rounded-xl"
+        initial='hidden'
+        animate='visible'
+        variants={variants}
+    > 
         <p className="font-bold uppercase text-red-1000 my-2">Nombre:{' '}
             <span className="font-normal normal-case text-white-1000"> {nombre}</span>    
         </p>   
@@ -43,7 +59,7 @@ const Paciente = ({paciente}) => {
             > Eliminar</button>
         </div>
 
-    </div>
+    </motion.div>
   )
 }
 
